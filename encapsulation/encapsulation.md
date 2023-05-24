@@ -146,3 +146,83 @@ public class Main {
 
 > "Also setters can be used for validating the data type. If you send a int to a String your program crashes but using the setters you can catch that and throw an exception or perform additional actions on the passed value to reformat before storing the value." - [Max D](https://www.youtube.com/watch?v=cU94So54cr8)
 
+# Class Binding
+
+Class binding is the process of associating a class with an object. It is also called instantiation. When you create an object, you are binding a class to an object.
+
+```java
+package class_binding;
+public class Main {
+  public static void main(String[] args) {
+    Student s = new Student(); // This is class binding
+  }
+}
+```
+
+There is also dynamic and static binding. Static binding is when the compiler knows which method to call. Dynamic binding is when the compiler doesn't know which method to call. Dynamic binding is also called late binding.
+
+One example of static binding is when you have a method that is overloaded. The compiler knows which method to call based on the parameters that you pass to the method.
+
+```java
+package class_binding;
+public class A {
+  public void print() {
+    System.out.println("A");
+  }
+  public void print(int x) {
+    System.out.println("A" + x);
+  }
+  public static void main(String[] args) {
+    A obj = new A();
+    obj.print(); // returns A
+    obj.print(10); // returns A10
+  }
+}
+```
+
+One example of dynamic binding is when you have a method that is overridden. The compiler doesn't know which method to call because it depends on the object that you are calling the method from.
+
+```java
+/////////////////////////////
+// Shape.java
+/////////////////////////////
+package class_binding;
+class Shape {
+  void draw() {
+    System.out.println("No Shape");
+  }
+}
+class Rectangle extends Shape {
+  void draw() {
+    System.out.println("Rectangle");
+  }
+}
+class Circle extends Shape {
+  void draw() {
+    System.out.println("Circle");
+  }
+}
+class Triangle extends Shape {
+  void draw() {
+    System.out.println("Triangle");
+  }
+}
+
+/////////////////////////////
+// Main.java
+/////////////////////////////
+
+package class_binding;
+
+public class Main {
+  public static void main(String[] args) {
+    Shape s;
+    s = new Rectangle();
+    s.draw(); // returns Rectangle
+    s = new Circle();
+    s.draw(); // returns Circle
+    s = new Triangle();
+    s.draw(); // returns Triangle
+  }
+}
+```
