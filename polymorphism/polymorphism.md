@@ -133,3 +133,63 @@ So, just to compare and contrast the two using a table:
 Some benefits of poly are that programmers can re-use the code they made more efficiently, it supports a single variable name for multiple datatypes, and it also reduces coupling between different functionalities.
 
 Some disadvantages are that polymorphism can raise performance issues in real-time, it reduces the readability of code in Java, and it might be difficult to implement according to experienced programmers. 
+
+## Covariance and Contravariance
+
+I will go over this briefly since I don't think this will be discussed heavily on this interview.
+
+Covariance is a statistical measure that quantifies the relationship between two random variables. It specifically measures how much two variables change together. If the covariance between two variables is positive, it means they tend to move in the same direction (when one increases, the other tends to increase as well), while a negative covariance indicates that they move in opposite directions (when one increases, the other tends to decrease).
+
+Here is a code example I generated using GPT 3.5:
+
+```java
+public static double calculateCovariance(double[] x, double[] y) {
+    if (x.length != y.length) {
+        throw new IllegalArgumentException("Input arrays must have the same length");
+    }
+    
+    double sumX = 0;
+    double sumY = 0;
+    double sumXY = 0;
+    double sumXSquared = 0;
+    double sumYSquared = 0;
+    int n = x.length;
+    
+    for (int i = 0; i < n; i++) {
+        sumX += x[i];
+        sumY += y[i];
+        sumXY += x[i] * y[i];
+        sumXSquared += x[i] * x[i];
+        sumYSquared += y[i] * y[i];
+    }
+    
+    double covariance = (sumXY - (sumX * sumY) / n) / (n - 1);
+    return covariance;
+}
+```
+
+Contravariance is a concept related to the type system in programming languages, including Java. It allows for more flexible parameter assignments in method overriding or interface implementation. In contravariance, the parameter types of a method or interface can be "weakened" or made more general in the subtype.
+
+In Java, contravariance can be understood through the use of functional interfaces and method references. Functional interfaces are interfaces with a single abstract method and can be used with lambda expressions or method references. Contravariance enables assigning a method reference or lambda expression that takes a more specific parameter type to a functional interface that expects a more general parameter type.
+
+Here is an example illustrating this concept:
+
+```java
+interface Animal {
+    void makeSound();
+}
+
+class Dog implements Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Woof!");
+    }
+}
+
+public class ContravarianceExample {
+    public static void main(String[] args) {
+        Animal animal = new Dog(); // Contravariance
+        animal.makeSound(); // Outputs "Woof!"
+    }
+}
+```
